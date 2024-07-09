@@ -240,14 +240,16 @@ const StyledButton = styled.button<{ isSymbol?: boolean; isZero?: boolean }>`
   justify-content: center;
 `;
 
+//여기부터 계산논리 부분임 인터넷 자료 좀 배낌-> 이해하기
 const App: React.FC = () => {
   const [display, setDisplay] = useState<string>("0");
   const [operator, setOperator] = useState<string | null>(null);
   const [previousValue, setPreviousValue] = useState<string | null>(null);
-  const [process, setprocess] = useState<boolean>(false);
+  const [process, setprocess] = useState<boolean>(false); //연산기호, 숫자 번갈아 누를때 필요, 연산기호는 display에서 보여지지 않으니까
 
   const handleNumberClick = (value: string) => {
     if (process) {
+      //연산기호 클릭 후 실행되는 코드임
       setDisplay(value);
       setprocess(false);
     } else {
@@ -288,6 +290,7 @@ const App: React.FC = () => {
         }
         setOperator(symbol);
         setprocess(true);
+        //연산기호 누르면 무조건 ture로
         break;
     }
   };
